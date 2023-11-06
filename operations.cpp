@@ -3,13 +3,14 @@
 //
 
 #include "operations.h"
+
+
 /*
  *  convert_rgb_to_gray: Mat3b -> Mat1b
  *      Converte imagem colorida[Mat3b] para imagem em tom de cinza [Mat1b] (luminancia)
  *          Formula utilizada para o calculo:
  *          L = 0.299 * Red + 0.587 * Green + 0.114 * Blue
  */
-
 cv::Mat1b convert_rgb_to_gray(const Mat3b& src) {
     cv::Mat1b dst;
     dst = Mat1b(src.rows, src.cols);

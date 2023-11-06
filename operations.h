@@ -11,6 +11,7 @@
 using namespace cv;
 using namespace std;
 
+
 /*  converte imagem colorida para imagem em tons de cinza */
 cv::Mat1b convert_rgb_to_gray(const Mat3b& src) ;
 

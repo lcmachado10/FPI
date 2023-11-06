@@ -6,6 +6,7 @@ add_executable( Open_CV_Project main.cpp
         backup.h
         loadImage.h
         operations.h
-        operations.cpp)
+        operations.cpp
+        cvui.h)
 target_link_libraries( Open_CV_Project  ${OpenCV_LIBS})
 include_directories(${CMAKE_SOURCE_DIR})
