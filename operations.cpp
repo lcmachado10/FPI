@@ -1,8 +1,19 @@
-//
-// Created by Lucas Machado on 06/11/23.
-//
 
 #include "operations.h"
+
+
+bool load_image(std::string path, std::string img_name, cv::Mat& img){
+    path += "/test_images/" + img_name ;
+    //cout << "PATH __---__ :: " << path << endl; 
+    
+    img = cv::imread(path,IMREAD_COLOR);
+    if (img.empty()) {
+        std::cerr << "Erro ao carregar a imagem." << std::endl;
+        return false;
+    }
+    return true;
+    
+};
 
 
 /*
@@ -83,3 +94,4 @@ cv::Mat hflip(const cv::Mat& src) {
     cv::Mat dst = vflip(img_aux).t();
     return dst;
 }
+

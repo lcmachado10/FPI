@@ -3,8 +3,7 @@ project( Open_CV_Project )
 find_package(OpenCV REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 add_executable( Open_CV_Project main.cpp
-        backup.h
-        loadImage.h
+                
         operations.h
         operations.cpp
         cvui.h)

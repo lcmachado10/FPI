@@ -1,7 +1,3 @@
-//
-// Created by Lucas Machado on 06/11/23.
-//
-
 #ifndef OPEN_CV_PROJECT_OPERATIONS_H
 #define OPEN_CV_PROJECT_OPERATIONS_H
 
@@ -11,10 +7,11 @@
 using namespace cv;
 using namespace std;
 
+bool load_image(std::string path, std::string img_name, cv::Mat& img);
+
 
 /*  converte imagem colorida para imagem em tons de cinza */
 cv::Mat1b convert_rgb_to_gray(const Mat3b& src) ;
-
 
 /* vertical_flip: espelhamento vertical de imagens coloridas, trocando pixel a pixel atraves de dois lacos for */
 cv::Mat3b vertical_flip(cv::Mat3b src) ;
