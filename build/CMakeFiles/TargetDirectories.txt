@@ -1,0 +1,3 @@
+/Users/lucasmachado/CIC/FPI/FPI/build/CMakeFiles/Open_CV_Project.dir
+/Users/lucasmachado/CIC/FPI/FPI/build/CMakeFiles/edit_cache.dir
+/Users/lucasmachado/CIC/FPI/FPI/build/CMakeFiles/rebuild_cache.dir
