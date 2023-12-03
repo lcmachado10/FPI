@@ -47,7 +47,7 @@ int main(int argv, char **argc)
     compression_params.push_back(40);
 
     try {
-        imwrite("chomsky.jpg", img, compression_params);
+        imwrite("AAaaaa.jpg", img, compression_params);
     }
     catch (runtime_error& ex) {
         fprintf(stderr, "Exception converting image to PNG format: %s\n", ex.what());
