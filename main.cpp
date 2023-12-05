@@ -73,7 +73,29 @@ bool save_image(std::string path, std::string img_name, cv::Mat& img){
     return true;
     
 };
-void menu(cv::Mat& frame, string& selected_img, string& selected_op, std::vector<cv::Mat>& vec_img ){
+
+/* ============================================ *
+*         QUANTIZATION                           *
+* ============================================ */ 
+//     int q: how many colors will be used
+void quantization(cv::Mat1b& src, int q) {
+    int divisor = 256 / q;
+    int max_quantized_value = 255 / divisor;
+
+    for (int r = 0; r < src.rows; r++) {
+        for (int c = 0; c < src.cols; c++) {
+            // get pixel
+            src.at<uchar>(r, c) = ((src.at<uchar>(r, c) / divisor) * 255) / max_quantized_value;
+        }
+
+    }
+}
+
+
+
+
+
+void menu(cv::Mat& frame, string& selected_img, string& selected_op, std::vector<cv::Mat>& vec_img, int& quant ){
     
     /* ============================================ *
      *   ATRIBUINDO VARIAVEIS PARA AS OPERACOES     *
@@ -136,6 +158,13 @@ void menu(cv::Mat& frame, string& selected_img, string& selected_op, std::vector
     if (cvui::button(frame, x,  y + 3*incY, "Salvar Imagem")) {
         
     }
+     /* QUANTIZATION */
+    if (cvui::button(frame, x,  y + 4*incY, "Quantizacao")) {
+        gray_option_selected = true;
+        quantization(gray_img, 8);
+    }
+    cvui::counter(frame, x + 10, y + 5*incY, &quant);
+
     /* BOTAO RESET */
     if (cvui::button(frame, 40,  550, "Reset")) {
         selected_op = "reset";
@@ -143,12 +172,12 @@ void menu(cv::Mat& frame, string& selected_img, string& selected_op, std::vector
         gray_option_selected = false;
     }
 
+   
+
     /* REATRIBUINDO OS VALORES AO VETOR DE MATRIZES :: IMAGENS */
     vec_img[IMG2] = img2;
     vec_img[GRAY_IMG] = gray_img;
 }
-
-
 
 
 int main(int argc, const char *argv[])
@@ -185,16 +214,19 @@ int main(int argc, const char *argv[])
 
     int histogram[256]; 
 
-    cv::Mat1b hist_img = convert_rgb_to_gray(matriz_vetor[IMG1]);
-    //get_histogram(hist_img, histogram);
 
-    float binVal = hist_img.at<float>(0,0); 
-    cout << binVal  << endl;
+    /* QUANTIZATION */
+
+    // cv::Mat1b imagemQuantizada = convert_rgb_to_gray(imagemColor);
+    // quantization(imagemQuantizada,8);
+
+    
+    int chomsky = 10;
 
     while (true) {
 
         /* MENU */
-        menu(frame,selected_img,selected_op, matriz_vetor);
+        menu(frame,selected_img,selected_op, matriz_vetor, chomsky);
         /* CINZA */
         cvui::text(frame, 20 ,50, "CHECKBOX CINZA: " , 0.5 , 0x8B008b);
         cvui::checkbox(frame, 170, 50, "CINZA?", &gray_option_selected, 0x8B008b);
@@ -219,8 +251,6 @@ int main(int argc, const char *argv[])
 
     return 0;
 }
-
-
 
 
 /* TO DOS
